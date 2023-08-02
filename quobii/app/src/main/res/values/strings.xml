@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">quobii</string>
+    <string name="hypotenuse_calculator">HYPOTENUSE CALCULATOR</string>
+    <string name="base">base</string>
+    <string name="height">height</string>
+    <string name="hypotenuse">hypotenuse</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="title">School App</string>
 </resources>

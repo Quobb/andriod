@@ -12,10 +12,8 @@
     <TextView
         android:layout_width="322dp"
         android:layout_height="33dp"
-        android:drawableStart="@drawable/cal_icon"
         android:gravity="center"
-        android:text="HYPOTENUSE CALCULATOR
-"
+        android:text="@string/hypotenuse_calculator"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#ffff"
         android:textStyle="bold"
@@ -24,11 +22,12 @@
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.053"
+        app:drawableStartCompat="@drawable/cal_icon" />
 
     <EditText
         android:id="@+id/txtbase"
-        android:hint="base"
+        android:hint="@string/base"
         android:maxLength="5"
         android:layout_width="206dp"
         android:layout_height="43dp"
@@ -48,7 +47,7 @@
 
     <EditText
         android:id="@+id/txtheight"
-        android:hint="height"
+        android:hint="@string/height"
         android:maxLength="5"
         android:layout_width="198dp"
         android:layout_height="43dp"
@@ -82,7 +81,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.442"
         android:gravity="center"
-        android:hint="hypotenuse"
+        android:hint="@string/hypotenuse"
         />
 
     <TextView
@@ -138,26 +137,27 @@
         android:layout_height="51dp"
         android:background="@drawable/txtshape"
         android:drawableStart="@drawable/cal_icon"
-        android:drawableLeft="@drawable/cal_icon"
         android:onClick="hypo"
-        android:text="CALCULATE"
+        android:text="@string/calculate"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="10sp"
+        android:textSize="13sp"
         app:icon="@drawable/cal_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintVertical_bias="0.751"
+        tools:ignore="SmallSp" />
 
     <Button
         android:id="@+id/btnnew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/baseline_create_new_folder_24"
-        android:drawableLeft="@drawable/baseline_create_new_folder_24"
         android:onClick="newcal"
+        android:background="@drawable/txtshape"
+        android:textSize="15sp"
         android:text="NEW"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:icon="@drawable/baseline_create_new_folder_24"
@@ -175,9 +175,10 @@
         android:drawableStart="@drawable/baseline_exit_to_app_24"
         android:drawableLeft="@drawable/baseline_exit_to_app_24"
         android:onClick="onClick"
+        android:background="@drawable/txtshape"
         android:text="EXIT"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="10sp"
+        android:textSize="15sp"
         app:icon="@drawable/baseline_exit_to_app_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

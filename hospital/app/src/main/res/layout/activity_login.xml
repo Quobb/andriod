@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login"
-    android:background="@drawable/back1">
+    android:background="@drawable/back1"
+    android:onClick="regis"
+    tools:context=".login">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eli's HealthCare"
-        android:textSize="34dp"
         android:shadowColor="@color/purple"
+        android:text="Eli's HealthCare"
         android:textColor="@color/white"
+        android:textSize="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -27,9 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:textStyle="bold"
-        android:textSize="24dp"
         android:textColor="@color/white"
+        android:textSize="24dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -38,19 +39,19 @@
         app:layout_constraintVertical_bias="0.266" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/txtuser"
         android:layout_width="278dp"
         android:layout_height="43dp"
         android:background="@drawable/input_bg"
-        android:ems="10"
         android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:ems="10"
         android:hint="user name"
         android:inputType="text"
-        android:text="USERNAME"
         android:paddingLeft="70dp"
-        android:paddingBottom="10dp"
-        android:paddingRight="20dp"
         android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:text="USERNAME"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,19 +61,19 @@
         app:layout_constraintVertical_bias="0.403" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/txtpass"
         android:layout_width="276dp"
         android:layout_height="43dp"
         android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/baseline_password_24"
+        android:drawableLeft="@drawable/baseline_security_24"
         android:ems="10"
         android:hint="enter password"
         android:inputType="textPassword"
-        android:text="password"
         android:paddingLeft="70dp"
-        android:paddingBottom="10dp"
-        android:paddingRight="20dp"
         android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:text="password"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,10 +83,10 @@
         app:layout_constraintVertical_bias="0.527" />
 
     <Button
-        android:id="@+id/button"
-        android:background="@drawable/outline"
+        android:id="@+id/btnlog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/outline"
         android:text="Login"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -108,11 +109,12 @@
         app:layout_constraintVertical_bias="0.733" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnsign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign up"
         android:background="@drawable/outline"
+        android:onClick="regis"
+        android:text="Sign up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
