@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">juicebar</string>
+    <string name="exit">EXIT</string>
+    <string name="new1">NEW</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="add">ADD</string>
+    <string name="credit_hour">Credit hour</string>
+    <string name="grade">Grade</string>
+    <string name="credit_hours2">Credit Hours :</string>
+    <string name="grade2">Grade :</string>
+    <string name="bachelor">Bachelor</string>
+    <string name="diploma">Diploma</string>
+    <string name="ho_technical_university">HO TECHNICAL UNIVERSITY</string>
+    <string name="gpa_calculator">GPA Calculator</string>
+    <string name="_0_00">0.00</string>
+    <string name="_0_002">0.00</string>
+</resources>

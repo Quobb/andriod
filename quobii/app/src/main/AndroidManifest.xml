@@ -13,6 +13,20 @@
         android:theme="@style/Theme.Quobii"
         tools:targetApi="31">
         <activity
+            android:name=".menu"
+            android:banner="@string/title"
+            android:exported="false"
+            android:label="@string/menu_home" />
+        <activity
+            android:name=".JuiceBar"
+            android:banner="@string/title"
+            android:exported="false" />
+        <activity
+            android:name=".calculation"
+            android:banner="@string/title"
+            android:exported="false"
+            android:label="Calculate" />
+        <activity
             android:name=".mobile_computing"
             android:exported="true">
             <intent-filter>
@@ -23,22 +37,10 @@
         </activity>
         <activity
             android:name=".login"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:banner="@string/title"
+            android:exported="true"
+            android:label="login">
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
     </application>
 

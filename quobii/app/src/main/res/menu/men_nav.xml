@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/project"
+        android:icon="@drawable/shapeshape"
+        android:title="Class project"  >
+       <menu>
+           <item
+               android:id="@+id/juice"
+               android:title="Juice Bar"></item>
+           <item
+               android:id="@+id/calcu"
+               android:title="Calculation"></item>
+           <item
+               android:id="@+id/log"
+               android:title="Login"></item>
+
+       </menu>
+    </item>
+
+    <item
+        android:id="@+id/outline"
+        android:title="Course outline"></item>
+    <item
+        android:id="@+id/recommend"
+        android:title="Recommended Books"></item>
+    <item
+        android:id="@+id/Detail"
+        android:title="Lecturer Details"></item>
+    <item
+        android:id="@+id/help"
+        android:title="Help"></item>
+</menu>

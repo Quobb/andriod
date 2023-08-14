@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">hospital</string>
+    <string name="email">Email</string>
+    <string name="enter_password">enter password</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="signup">signUp</string>
+    <string name="i_have_an_account">i have an account</string>
+    <string name="login">Login</string>
+    <string name="enter_password2">enter password</string>
+    <string name="login3">Login</string>
+    <string name="don_t_have_an_account4">Don\'t have an account</string>
+    <string name="sign_up2">Sign up</string>
+    <string name="user_name4">user name</string>
+    <string name="login5">Login</string>
+    <string name="eli_s_healthcare">Eli\'s HealthCare</string>
 </resources>

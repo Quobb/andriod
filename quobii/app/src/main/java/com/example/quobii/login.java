@@ -1,23 +1,21 @@
 package com.example.quobii;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.icu.text.ConstrainedFieldPosition;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class login extends AppCompatActivity {
-  EditText txtuser,txtuserpass;
-  Button btnenter,btncan;
-  View newmwin;
+    EditText txtuser, txtuserpass;
+    Button btnenter, btncan;
+    View newmwin;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -34,11 +32,16 @@ public class login extends AppCompatActivity {
             txtuserpass.setText("");
         });
         btnenter.setOnClickListener(v -> {
-            if ( "Admin".equals(txtuser.getText().toString()) && "1234".equals(txtuserpass.getText().toString())){
-                Intent kk = new Intent(getApplicationContext(),MainActivity.class);
+            if ("Admin".equals(txtuser.getText().toString()) && "1234".equals(txtuserpass.getText().toString())) {
+                Intent kk = new Intent(getApplicationContext(), menu.class);
+                String hello = txtuser.getText().toString();
+                kk.putExtra("user", hello);
+                kk.putExtra("pass", txtuserpass.getText().toString());
+                txtuser.setText("");
+                txtuserpass.setText("");
                 startActivity(kk);
-            }else{
-                Toast.makeText(login.this,"invaid username or password" ,Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(login.this, "invaid username or password", Toast.LENGTH_SHORT).show();
             }
         });
         btnenter.setEnabled(false);
@@ -69,8 +72,9 @@ public class login extends AppCompatActivity {
 
 
     }
-    public void logback(View mm){
-        Intent kk = new Intent(getApplicationContext(),mobile_computing.class);
+
+    public void logback(View mm) {
+        Intent kk = new Intent(getApplicationContext(), mobile_computing.class);
         startActivity(kk);
     }
 

@@ -3,17 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".calculation"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/images"
+        android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.QuobbiChamp"
+        android:theme="@style/Theme.Quobii"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".mymy"
+            android:exported="false" />
+        <!-- Activities... -->
+        <activity
+            android:name=".menu"
+            android:exported="false"
+            android:label="@string/menu_home" />
+        <activity
+            android:name=".JuiceBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +30,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".calculation"
+            android:exported="false"
+            android:label="Calculate" />
+        <activity
+            android:name=".mobile_computing"
+            android:exported="true"></activity>
+        <activity
+            android:name=".login"
+            android:exported="false"
+            android:label="login"></activity>
     </application>
 
 </manifest>
