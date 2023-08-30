@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/back2"
     tools:context=".register">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -99,8 +100,7 @@
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.587"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintVertical_bias="0.587" />
 
     <EditText
         android:id="@+id/txtconpassname"
@@ -115,7 +115,6 @@
         android:paddingTop="10dp"
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
-
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -162,6 +161,5 @@
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.909"
-        tools:ignore="UsingOnClickInXml" />
+        app:layout_constraintVertical_bias="0.909" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -108,11 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 if(radiogroup.getCheckedRadioButtonId() == -1){
                     Toast.makeText(MainActivity.this,"select a product",Toast.LENGTH_SHORT).show();
                 }else {
-                    boolean quantity = txtQuantity.getText().toString().trim().isEmpty();
-
-                    btnOrder.setEnabled(!(quantity));
-                    cost();
-                    allTextfieldDisable();
+                    ischeckladies();
+                    ischeckengy();
                 }
 
             }
@@ -122,9 +119,22 @@ public class MainActivity extends AppCompatActivity {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnReport.setEnabled(true);
-                btnComp.setEnabled(false);
-                btnOrder.setEnabled(false);
+                new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("Do you want add ?")
+                        .setCancelable(false)
+                        .setNegativeButton("no",(dialog, which) ->{
+                            clearAllFields();
+                        } )
+                        .setPositiveButton("yes",(dialog, which) ->{
+                            btnReport.setEnabled(true);
+                            btnComp.setEnabled(false);
+                            btnOrder.setEnabled(false);
+
+                        } )
+                        .setTitle("Adding")
+                        .create()
+                        .show();
+
             }
         });
         btnReport.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +161,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                boolean quantity = txtQuantity.getText().toString().trim().isEmpty();
+                btnNew.setEnabled(!(quantity));
+//                btnComp.setEnabled(!(quantity));
+                ischeckengy();
+                ischeckladies();
 
             }
         };
@@ -159,30 +174,57 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void updateCost() {
-        // Calculate the new cost based on the checkboxes
-        double newCost = cost;
+        // Calculate the cost based on user input
+        cost();
 
+        // Adjust cost based on checkboxes
         if (chkenergy.isChecked()) {
-            newCost += 5.0;
+            Price += 5.0;
         }
 
         if (chklabies.isChecked()) {
-            newCost += 5.0;
+            Price += 5.0;
         }
 
-        // Calculate amount cost based on checkboxes
-        amountdue = newCost;
+        // Update UI fields
+        txtPrice.setText(kk.format(cost));
 
-        // Update the cost field with the new value
-        txtCost.setText(kk.format(newCost));
-
-        // Update the tax field with the new value
-        tax = newCost * 0.35;
+        tax = cost * 0.35;
         txtTax.setText(kk.format(tax));
+
         extra = tax + cost;
         txtAmount.setText(kk.format(extra));
+    }
 
+    public  void ischeckladies(){
+        if(chklabies.isChecked()){
+            boolean quantity = txtQuantity.getText().toString().trim().isEmpty();
 
+            btnOrder.setEnabled(!(quantity));
+            updateCost();
+            allTextfieldDisable();
+        }else{
+            boolean quantity = txtQuantity.getText().toString().trim().isEmpty();
+
+            btnOrder.setEnabled(!(quantity));
+            cost();
+            allTextfieldDisable();
+        }
+    }
+    public void ischeckengy(){
+        if(chkenergy.isChecked()){
+            boolean quantity = txtQuantity.getText().toString().trim().isEmpty();
+
+            btnOrder.setEnabled(!(quantity));
+            updateCost();
+            allTextfieldDisable();
+        }else{
+            boolean quantity = txtQuantity.getText().toString().trim().isEmpty();
+
+            btnOrder.setEnabled(!(quantity));
+            cost();
+            allTextfieldDisable();
+        }
     }
 
     public void cost(){
@@ -326,8 +368,8 @@ public class MainActivity extends AppCompatActivity {
        btnpro.setTag(20);
        btnstraw.setTag(24);
        btnweat.setTag(24);
-       chkenergy.setTag(5);
-       chklabies.setTag(5);
+//       chkenergy.setTag(5);
+//       chklabies.setTag(5);
    }
 
 

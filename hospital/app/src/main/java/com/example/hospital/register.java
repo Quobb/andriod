@@ -40,15 +40,20 @@ public class register extends AppCompatActivity {
             String password = passs.getText().toString();
             String compass = conpass.getText().toString();
             String emails =   email.getText().toString();
+            //database in section
+             database dc = new database(getApplicationContext(),"hospital",null,1);
+
+
             if(username.length() == 0 || password.length()==0 || compass.length()==0 || emails.length()==0){
                 // Show a toast if any field is empty
                 Toast.makeText(getApplicationContext(),"Enter detail",Toast.LENGTH_SHORT).show();
             } else {
                 if (password.compareTo(compass)==0){
                     if(isValid(password)){
+                        dc.register(username,emails,password);
                         // Show success message and navigate to MainActivity
                         Toast.makeText(getApplicationContext(),"Account created successful",Toast.LENGTH_SHORT).show();
-                        Intent dd = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent dd = new Intent(getApplicationContext(), login.class);
                         startActivity(dd);
                         // Clear input fields
                         users.setText("");

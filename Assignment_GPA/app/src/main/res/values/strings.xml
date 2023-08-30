@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">Assignment_GPA</string>
+    <string name="app_name" translatable="false">juicebar</string>
+    <string name="exit" translatable="false">EXIT</string>
+    <string name="new1" translatable="false">NEW</string>
+    <string name="calculate" translatable="false">CALCULATE</string>
+    <string name="add" translatable="false">ADD</string>
+    <string name="credit_hour" translatable="false">Credit hour</string>
+    <string name="grade" translatable="false">SCore</string>
+    <string name="credit_hours2" translatable="false">Credit Hours :</string>
+    <string name="grade2" translatable="false">Score :</string>
+    <string name="bachelor" translatable="false">Bachelor</string>
+    <string name="diploma" translatable="false">Diploma</string>
+    <string name="ho_technical_university" translatable="false">HO TECHNICAL UNIVERSITY</string>
+    <string name="gpa_calculator" translatable="false">GPA Calculator</string>
+    <string name="_0_00" translatable="false">0.00</string>
+    <string name="_0_002" translatable="false">0.00</string>
 </resources>

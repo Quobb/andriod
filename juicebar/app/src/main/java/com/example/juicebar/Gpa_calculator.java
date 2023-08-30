@@ -3,22 +3,23 @@ package com.example.juicebar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.*;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class Gpa_calculator extends AppCompatActivity {
     private Button calculateButton, exitButton, addButton, newButton;
     private RadioGroup degreeRadioGroup;
     private RadioButton diplomaRadioButton, bachelorRadioButton;
-    private EditText creditEditText, gradeEditText,displayTextView;
-//    private TextView displayTextView;
+    private EditText creditEditText, gradeEditText;
+    private TextView displayTextView;
     private int cumulativeCreditHours = 0;
     private double cumulativeTotalPoints = 0;
 
@@ -32,33 +33,10 @@ public class Gpa_calculator extends AppCompatActivity {
         calculateButton.setEnabled(false);
         newButton.setEnabled(false);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleAddButtonClick();
-            }
-        });
-
-        newButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleNewButtonClick();
-            }
-        });
-
-        calculateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleCalculateButtonClick();
-            }
-        });
-
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showExitConfirmationDialog();
-            }
-        });
+        addButton.setOnClickListener(v -> handleAddButtonClick());
+        newButton.setOnClickListener(v -> handleNewButtonClick());
+        calculateButton.setOnClickListener(v -> handleCalculateButtonClick());
+        exitButton.setOnClickListener(v -> showExitConfirmationDialog());
 
         gradeEditText.addTextChangedListener(gradeTextWatcher);
         creditEditText.addTextChangedListener(creditTextWatcher);
@@ -122,12 +100,8 @@ public class Gpa_calculator extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setMessage("Exiting")
                 .setCancelable(false)
-                .setNegativeButton("NO", (dialog, which) -> {
-                    dialog.dismiss();
-                })
-                .setPositiveButton("Yes", (dialog, which) -> {
-                    finish();
-                })
+                .setNegativeButton("NO", (dialog, which) -> dialog.dismiss())
+                .setPositiveButton("Yes", (dialog, which) -> finish())
                 .setTitle("Exiting Application")
                 .create()
                 .show();
@@ -145,27 +119,35 @@ public class Gpa_calculator extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
             String grade = gradeEditText.getText().toString();
-            if (diplomaRadioButton.isChecked()) {
-                if ("A+".equals(grade) || "A".equals(grade) || "B+".equals(grade) ||
-                        "B".equals(grade) || "C+".equals(grade) || "C".equals(grade) ||
-                        "D+".equals(grade) || "D".equals(grade) || "F".equals(grade)) {
-                    // Valid grade
-                } else {
-                    Toast.makeText(Gpa_calculator.this, "Invalid Grade", Toast.LENGTH_SHORT).show();
-                    gradeEditText.setText("");
-                }
-            } else {
-                if ("E".equals(grade) || "A".equals(grade) || "B+".equals(grade) ||
-                        "B".equals(grade) || "C+".equals(grade) || "C".equals(grade) ||
-                        "D+".equals(grade) || "D".equals(grade) || "F".equals(grade)) {
-                    // Valid grade
-                } else {
-                    Toast.makeText(Gpa_calculator.this, "Invalid Grade", Toast.LENGTH_SHORT).show();
-                    gradeEditText.setText("");
+            RadioButton selectedRadioButton = findViewById(degreeRadioGroup.getCheckedRadioButtonId());
+
+            if (!grade.isEmpty()) {
+                if (selectedRadioButton == diplomaRadioButton) {
+                    if (!isValidDiplomaGrade(grade)) {
+                        gradeEditText.setText("");
+                        Toast.makeText(Gpa_calculator.this, "Invalid Grade", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (selectedRadioButton == bachelorRadioButton) {
+                    if (!isValidBachelorGrade(grade)) {
+                        gradeEditText.setText("");
+                        Toast.makeText(Gpa_calculator.this, "Invalid Grade", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }
     };
+
+    private boolean isValidDiplomaGrade(String grade) {
+        return grade.equals("A+") || grade.equals("A") || grade.equals("B+") ||
+                grade.equals("B") || grade.equals("C+") || grade.equals("C") ||
+                grade.equals("D+") || grade.equals("D") || grade.equals("F");
+    }
+
+    private boolean isValidBachelorGrade(String grade) {
+        return grade.equals("A") || grade.equals("B+") || grade.equals("B") ||
+                grade.equals("C+") || grade.equals("C") || grade.equals("D+") ||
+                grade.equals("D") || grade.equals("E") || grade.equals("F");
+    }
 
     private final TextWatcher creditTextWatcher = new TextWatcher() {
         @Override
@@ -181,11 +163,9 @@ public class Gpa_calculator extends AppCompatActivity {
             String creditStr = creditEditText.getText().toString();
             if (!creditStr.isEmpty()) {
                 int credit = Integer.parseInt(creditStr);
-                if (credit > 1 && credit < 6) {
-                    // Valid credit hours
-                } else {
-                    Toast.makeText(Gpa_calculator.this, "Invalid credit", Toast.LENGTH_SHORT).show();
+                if (credit < 1 || credit > 5) {
                     creditEditText.setText("");
+                    Toast.makeText(Gpa_calculator.this, "Invalid credit", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -193,7 +173,9 @@ public class Gpa_calculator extends AppCompatActivity {
 
     private double calculateGradePoint() {
         String grade = gradeEditText.getText().toString();
-        if (diplomaRadioButton.isChecked()) {
+        RadioButton selectedRadioButton = findViewById(degreeRadioGroup.getCheckedRadioButtonId());
+
+        if (selectedRadioButton == diplomaRadioButton) {
             switch (grade) {
                 case "A+":
                     return 5.0;
@@ -214,7 +196,7 @@ public class Gpa_calculator extends AppCompatActivity {
                 default:
                     return 1.0;
             }
-        } else { // Assuming bachelorRadioButton is selected
+        } else if (selectedRadioButton == bachelorRadioButton) {
             switch (grade) {
                 case "A":
                     return 4.5;
@@ -236,13 +218,15 @@ public class Gpa_calculator extends AppCompatActivity {
                     return 1.0;
             }
         }
+        return 0.0; // Default value if no radio button is selected (error handling)
     }
 
     private void displayResults() {
         double cumulativeGPA = cumulativeTotalPoints / cumulativeCreditHours;
         String classification;
+        RadioButton selectedRadioButton = findViewById(degreeRadioGroup.getCheckedRadioButtonId());
 
-        if (diplomaRadioButton.isChecked()) {
+        if (selectedRadioButton == diplomaRadioButton) {
             if (cumulativeGPA >= 4.0) {
                 classification = "First class Honour";
             } else if (cumulativeGPA >= 3.0) {
@@ -254,7 +238,7 @@ public class Gpa_calculator extends AppCompatActivity {
             } else {
                 classification = "Fail";
             }
-        } else { // Assuming bachelorRadioButton is selected
+        } else if (selectedRadioButton == bachelorRadioButton) {
             if (cumulativeGPA >= 3.75) {
                 classification = "First class Honour";
             } else if (cumulativeGPA >= 3.35) {
@@ -266,8 +250,10 @@ public class Gpa_calculator extends AppCompatActivity {
             } else {
                 classification = "Fail";
             }
+        } else {
+            classification = "No classification available"; // Handle other cases if necessary
         }
 
-        displayTextView.setText(String.format("Your final GPA: %s\n%s", cumulativeGPA, classification));
+        displayTextView.setText(String.format("Your final GPA: %.2f\n%s", cumulativeGPA, classification));
     }
 }

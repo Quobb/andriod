@@ -2,7 +2,9 @@ package com.example.hospital;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,14 +37,28 @@ public class login extends AppCompatActivity {
         log.setOnClickListener(v -> {
             String username = user.getText().toString();
             String password = pass.getText().toString();
+            database dc = new database(getApplicationContext(),"hospital",null,1);
             if(username.length() == 0 || password.length()==0){
                 // Show a toast if any field is empty
                 Toast.makeText(getApplicationContext(),"Enter details",Toast.LENGTH_SHORT).show();
             } else {
                 // Navigate to MainActivity and show login success message
-                Intent dd = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(dd);
-                Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
+                if(dc.login(username,password)==1){
+
+                    Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sp = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor ed = sp.edit();
+                    ed.putString("username",username);
+                    ed.apply();
+
+                    Intent dd = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(dd);
+                    // Clear input fields
+                    clear();
+                }else{
+                    Toast.makeText(getApplicationContext(),"invaild user name and password",Toast.LENGTH_SHORT).show();
+                }
                 // Clear input fields
                 clear();
             }

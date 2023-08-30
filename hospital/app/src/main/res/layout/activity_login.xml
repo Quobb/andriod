@@ -7,8 +7,7 @@
     android:background="@drawable/back1"
     android:visibility="visible"
     tools:context=".login"
-    tools:visibility="visible"
-    tools:ignore="UsingOnClickInXml">
+    tools:visibility="visible">
 
     <TextView
         android:id="@+id/textView"
@@ -48,6 +47,7 @@
         android:id="@+id/txtusername"
         android:layout_width="278dp"
         android:layout_height="43dp"
+        android:autofillHints=""
         android:background="@drawable/input_bg"
         android:drawableStart="@drawable/ic_baseline_person_24"
         android:ems="10"
@@ -63,14 +63,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.403"
-        tools:visibility="visible"
-        tools:ignore="RtlSymmetry"
-        android:autofillHints="" />
+        tools:visibility="visible" />
 
     <EditText
         android:id="@+id/txtpassname"
         android:layout_width="276dp"
         android:layout_height="43dp"
+        android:autofillHints=""
         android:background="@drawable/input_bg"
         android:drawableStart="@drawable/ic_baseline_security_24"
         android:ems="10"
@@ -78,7 +77,6 @@
         android:inputType="textPassword"
         android:paddingStart="20sp"
         android:textAlignment="center"
-
         android:textColor="@color/white"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,9 +85,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.527"
-        tools:visibility="visible"
-        tools:ignore="RtlSymmetry"
-        android:autofillHints="" />
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/btnlogs"
