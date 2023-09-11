@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import com.example.htu_connet_social.R;
 
 
-public class LogonFragment extends Fragment {
+public class LogInFragment extends Fragment {
 
-    public LogonFragment() {
+    public LogInFragment() {
         // Required empty public constructor
     }
 
@@ -29,6 +29,6 @@ public class LogonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_logon, container, false);
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
 }

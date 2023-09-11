@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "251781205995",
+    "project_id": "htuconnet",
+    "storage_bucket": "htuconnet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251781205995:android:c3eb60ef085a671c1e13ae",
+        "android_client_info": {
+          "package_name": "com.example.htu_connet_social"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251781205995-7m2s1t08quq8a7n5u68mu4a9rs7hghcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLZtfUcTZnO1WJymK5GmpEf6ez7lBodMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251781205995-7m2s1t08quq8a7n5u68mu4a9rs7hghcv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

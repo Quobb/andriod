@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         chkenergy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 updateCost();
             }
         });
