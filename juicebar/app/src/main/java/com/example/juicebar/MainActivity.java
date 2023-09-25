@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void updateCost() {
         // Calculate the cost based on user input
-        cost();
+
 
         // Adjust cost based on checkboxes
         if (chkenergy.isChecked()) {
@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
         if (chklabies.isChecked()) {
             Price += 5.0;
         }
+        cost();
 
         // Update UI fields
         txtPrice.setText(kk.format(cost));

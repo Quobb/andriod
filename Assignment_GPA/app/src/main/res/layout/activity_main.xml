@@ -256,3 +256,277 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--
+package com.example.ict202_mobileappsdevt;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
+import java.text.DecimalFormat;
+
+public class GPA_Cal extends AppCompatActivity {
+    double GPA,TPoints;
+    int CHours;
+    Button btnAdd,btnCal,btnNew,btnExit;
+    EditText txtScore,txtCHours;
+    TextView txtResult;
+    RadioButton rbtDip,rbtBTech;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_gpa_cal);
+        getSupportActionBar().hide();
+
+        btnAdd = findViewById(R.id.btnAdd);
+        btnCal = findViewById(R.id.btnCalculate);
+        btnNew = findViewById(R.id.btnNew);
+        btnExit = findViewById(R.id.btnExit);
+
+        txtResult = findViewById(R.id.txtresults);
+        txtScore = findViewById(R.id.txtScore);
+        txtCHours = findViewById(R.id.txtChours);
+
+        rbtDip = findViewById(R.id.rbtHND);
+        rbtBTech = findViewById(R.id.rbtBTech);
+
+        btnCal.setVisibility(View.INVISIBLE);
+        txtResult.setVisibility(View.INVISIBLE);
+        rbtDip.setChecked(true);
+
+        txtScore.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (txtScore.getText().length() != 0 ) {
+                    int a = Integer.parseInt(txtScore.getText().toString());
+                    if ((a<0) || (a>100)) {
+                        Toast.makeText(GPA_Cal.this, "Invalid Exams Score", Toast.LENGTH_LONG).show();
+                        btnAdd.setEnabled(false);
+                        txtScore.setFocusable(true);
+                    }
+                    else{
+                        btnAdd.setEnabled(true);
+                    }
+                }
+            }
+        });
+        txtCHours.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (txtCHours.getText().length() !=0) {
+                    int h = Integer.parseInt(txtCHours.getText().toString());
+                    if ((h<1) || (h>6)) {
+                        Toast.makeText(GPA_Cal.this, "Invalid Credit Hours \nCredit hours should be between 1 - 6", Toast.LENGTH_LONG).show();
+                        btnAdd.setEnabled(false);
+                        txtCHours.requestFocus();
+                    }else{
+                        btnAdd.setEnabled(true);
+                    }
+                }
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtScore.getText().length() !=0 && txtCHours.getText().length() !=0){   // 1 mark
+                    int hours = Integer.parseInt(txtCHours.getText().toString());
+                    double mark = Double.parseDouble(txtScore.getText().toString());    // 1 mark
+                    double GPoint = CheckGradePoint(mark);
+                    CHours += hours;
+                    TPoints += (GPoint * hours);
+                    txtCHours.setText("");
+                    txtScore.setText("");
+                    txtScore.requestFocus();
+                    btnCal.setVisibility(View.VISIBLE);
+                    if (rbtDip.isChecked()){
+                        rbtBTech.setEnabled(false);
+                    }else{
+                        rbtDip.setEnabled(false);
+                    }
+                }else{
+                    Toast.makeText(GPA_Cal.this, "All fields are mandatory", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        btnCal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txtScore.getText().length() != 0 && txtCHours.getText().length() != 0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(GPA_Cal.this);
+                    builder.setMessage("Do you want to add this score?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    int hours = Integer.parseInt(txtCHours.getText().toString());
+                                    double mark = Double.parseDouble(txtScore.getText().toString());
+                                    double GPoint = CheckGradePoint(mark);
+                                    CHours += hours;
+                                    TPoints += (GPoint * hours);
+                                    txtCHours.setText("");
+                                    txtScore.setText("");
+                                    txtScore.requestFocus();
+                                    //btnAdd.setOnClickListener;
+                                    CalDisplay();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int i) {
+                                    CalDisplay();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.setTitle("Adding...");
+                    alert.show();
+                } else {
+                    CalDisplay();
+                }
+            }
+        });
+        btnNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtScore.setText("");
+                txtCHours.setText("");
+                btnCal.setEnabled(true);
+                btnCal.setVisibility(View.INVISIBLE);
+                txtResult.setVisibility(View.INVISIBLE);
+                btnAdd.setEnabled(true);
+                txtScore.requestFocus();
+                rbtBTech.setEnabled(true);
+                rbtDip.setEnabled(true);
+            }
+        });
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(GPA_Cal.this);
+                builder.setMessage("Do you want to close App?...")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                System.exit(1);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Nothing
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.setTitle("Exit Application");
+                alert.show();
+            }
+        });
+    }
+    public double CheckGradePoint(double Score) {
+        if (rbtDip.isChecked()) {
+            double mm = Double.parseDouble(txtScore.getText().toString());
+            if (mm >= 85)
+                return 5.00;
+            else if (mm >= 80)
+                return 4.50;
+            else if (mm >= 75)
+                return 4.00;
+            else if (mm >= 70)
+                return 3.50;
+            else if (mm >= 65)
+                return 3.00;
+            else if (mm >= 60)
+                return 2.50;
+            else if (mm >= 55)
+                return 2.00;
+            else if (mm >= 50)
+                return 1.50;
+            else
+                return 0.00;
+        } else {
+            double mm = Double.parseDouble(txtScore.getText().toString());
+            if (mm >= 80)
+                return 4.00;
+            else if (mm >= 75)
+                return 3.50;
+            else if (mm >= 70)
+                return 3.00;
+            else if (mm >= 65)
+                return 2.50;
+            else if (mm >= 60)
+                return 2.00;
+            else if (mm >= 55)
+                return 1.50;
+            else if (mm >= 50)
+                return 1.00;
+            else if (mm >= 45)
+                return 1.00;
+            else
+                return 0.00;
+        }
+    }
+    public void CalDisplay(){
+        DecimalFormat df = new DecimalFormat("0.00");
+        GPA = TPoints/CHours;
+        String GClass;
+        if (rbtDip.isChecked()){
+            if (GPA >= 4.00)
+                GClass = "First Class";
+            else if (GPA >= 3.0)
+                GClass = "Second Class (Upper Division)";
+            else if (GPA >= 2.0)
+                GClass = "Second  Class (Lower Division)";
+            else if (GPA >= 1.50)
+                GClass = "Pass";
+            else
+                GClass = "Fail";
+        }else{
+            if (GPA >= 3.75)
+                GClass = "First Class";
+            else if (GPA >= 3.35)
+                GClass = "Second Class (Upper Division)";
+            else if (GPA >= 2.51)
+                GClass = "Second  Class (Lower Division)";
+            else if (GPA >= 2.01)
+                GClass = "Third Class";
+            else if (GPA >= 1.00)
+                GClass = "Pass";
+            else
+                GClass = "Fail";
+        }
+        txtResult.setText("Your Final GPA is "+ df.format(GPA) + "\nClass - " + GClass);
+        txtResult.setVisibility(View.VISIBLE);
+        btnAdd.setEnabled(false);
+        btnCal.setEnabled(false);
+    }
+}
+-->
